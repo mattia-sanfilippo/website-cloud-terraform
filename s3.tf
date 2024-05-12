@@ -4,11 +4,6 @@ resource "aws_s3_bucket" "media_bucket" {
   force_destroy = true
 }
 
-# resource "aws_s3_bucket_acl" "media_bucket_acl" {
-#   bucket = aws_s3_bucket.media_bucket.id
-#   acl    = "private"
-# }
-
 resource "aws_s3_bucket_ownership_controls" "media_bucket_acl_ownership" {
   bucket = aws_s3_bucket.media_bucket.id
 
