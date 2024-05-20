@@ -1,5 +1,7 @@
 # Website Cloud Infrastructure
 
+![CloudProgramming](https://github.com/mattia-sanfilippo/website-cloud-terraform/assets/9214950/264922c8-2011-4e66-81b1-159cd036efaa)
+
 ## Description
 
 This project sets up a cloud infrastructure for a website using Terraform and AWS as provider. The infrastructure includes the following components:
