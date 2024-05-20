@@ -41,3 +41,9 @@ variable "vpc_cidr" {
   default     = "10.10.0.0/16"
   description = "AWS VPC CIDR"
 }
+
+variable "whitelisted_countries" {
+  description = "List of countries to whitelist for WAF and CloudFront distribution"
+  type        = list(string)
+  default     = ["IT", "DE", "FR", "ES", "GB", "US", "CA", "AU", "JP", "DK", "SE", "NO", "FI", "NL", "BE", "LU", "IE", "PT", "AT", "CH", "LI", "IS", "GR", "CY", "EE", "LV", "LT", "PL", "CZ", "SK", "HU", "SI", "HR", "RO"]
+}

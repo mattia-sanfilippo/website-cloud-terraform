@@ -37,7 +37,7 @@ resource "aws_cloudfront_distribution" "cf_dist" {
   restrictions {
     geo_restriction {
       restriction_type = "whitelist"
-      locations        = ["IT"]
+      locations        = var.whitelisted_countries
     }
   }
 
@@ -90,7 +90,7 @@ resource "aws_cloudfront_distribution" "cf_media_dist" {
   restrictions {
     geo_restriction {
       restriction_type = "whitelist"
-      locations        = ["IT"]
+      locations        = var.whitelisted_countries
     }
   }
 
