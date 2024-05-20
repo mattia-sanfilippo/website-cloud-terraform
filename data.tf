@@ -1,4 +1,5 @@
-# fetch ubuntu ami id:
+# fetch ubuntu image ami id from aws by filtering the image name
+# owner id is Canonical
 data "aws_ami" "ubuntu_ami" {
   filter {
     name   = "name"
@@ -12,7 +13,7 @@ data "aws_ami" "ubuntu_ami" {
   owners      = ["099720109477"]
 }
 
-# generate user data script
+# user data that will be used to install apache and create a simple index.html file
 data "template_cloudinit_config" "user_data" {
   gzip          = false
   base64_encode = true

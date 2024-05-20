@@ -1,4 +1,3 @@
-# generate ACM cert for domain :
 resource "aws_acm_certificate" "cert" {
   domain_name               = var.domain_name
   subject_alternative_names = ["*.${var.domain_name}"]
@@ -6,7 +5,6 @@ resource "aws_acm_certificate" "cert" {
   tags                      = local.tags
 }
 
-# validate cert:
 resource "aws_route53_record" "certvalidation" {
   for_each = {
     for d in aws_acm_certificate.cert.domain_validation_options : d.domain_name => {
@@ -29,7 +27,6 @@ resource "aws_acm_certificate_validation" "certvalidation" {
   validation_record_fqdns = [for r in aws_route53_record.certvalidation : r.fqdn]
 }
 
-# creating A record for domain:
 resource "aws_route53_record" "websiteurl" {
   name    = var.domain_name
   zone_id = data.aws_route53_zone.hosted_zone.zone_id
@@ -42,7 +39,6 @@ resource "aws_route53_record" "websiteurl" {
   }
 }
 
-# creating record for media
 resource "aws_route53_record" "mediaurl" {
   name    = var.media_domain_name
   zone_id = data.aws_route53_zone.hosted_zone.zone_id

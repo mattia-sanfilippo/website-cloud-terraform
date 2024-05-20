@@ -1,4 +1,4 @@
-#creating CF distribution :
+# creation of cloudfront distribution for the web application
 resource "aws_cloudfront_distribution" "cf_dist" {
   enabled = true
   aliases = [var.domain_name]
@@ -17,6 +17,7 @@ resource "aws_cloudfront_distribution" "cf_dist" {
     }
   }
 
+# cache behavior for the web application distribution
   default_cache_behavior {
     allowed_methods        = ["GET", "HEAD", "OPTIONS", "PUT", "POST", "PATCH", "DELETE"]
     cached_methods         = ["GET", "HEAD", "OPTIONS"]
@@ -51,6 +52,7 @@ resource "aws_cloudfront_distribution" "cf_dist" {
 }
 
 
+# creation of cloudfront distribution for the media content (images, videos, etc.)
 resource "aws_cloudfront_distribution" "cf_media_dist" {
   enabled = true
   aliases = [var.media_domain_name]
@@ -67,6 +69,7 @@ resource "aws_cloudfront_distribution" "cf_media_dist" {
   }
 
 
+# cache behavior for the media content distribution
   default_cache_behavior {
     allowed_methods        = ["GET", "HEAD"]
     cached_methods         = ["GET", "HEAD"]
@@ -98,6 +101,7 @@ resource "aws_cloudfront_distribution" "cf_media_dist" {
 
 }
 
+# creation of OAI for the CF media content distribution
 resource "aws_cloudfront_origin_access_identity" "media_oai" {
   comment = "OAI for ${var.media_domain_name}"
 }
